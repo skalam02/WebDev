@@ -1,0 +1,11 @@
+<% include partials/header %>
+<h1>Edit Sports Post</h1>
+
+<form action="/sportsci/<%= foundBlog._id %>?_method=PUT" method="POST">
+  <input type="text" name="sblog[title]" value="<%= foundBlog.title %>" placeholder="title">
+  <input type="text" name="sblog[image]" value="<%= foundBlog.image %>" placeholder="image">
+  <input type="text" name="sblog[body]" value="<%= foundBlog.body %>" placeholder="body">
+  <button>Submit</button>
+</form>
+
+<% include partials/footer %>

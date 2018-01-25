@@ -1,0 +1,12 @@
+<% include partials/header %>
+
+<h1><%= foundBlog.title %></h1>
+<img src="<%= foundBlog.image %>" alt="">
+<p><%= foundBlog.body %></p>
+<span><%= foundBlog.created.toDateString() %></span>
+
+<form action="/sportsci/<%= foundBlog._id %>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>
+
+<% include partials/footer %>

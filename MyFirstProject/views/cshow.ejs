@@ -1,0 +1,12 @@
+<% include partials/header %>
+
+<h1><%= afoundBlog.title %> </h1>
+<img src="<%= afoundBlog.image %>" alt="">
+<p><%= afoundBlog.body %></p>
+<span><%= afoundBlog.created.toDateString() %></span>
+
+<form action="/compsci/<%= afoundBlog._id %>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>
+
+<% include partials/footer %>

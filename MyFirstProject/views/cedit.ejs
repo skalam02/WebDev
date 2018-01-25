@@ -1,0 +1,12 @@
+<% include partials/header %>
+<h1>Edit Computer Post</h1>
+
+<form action="/compsci/<%= foundBlog._id %>?_method=PUT" method="POST">
+  <input type="text" name="cblog[title]" value="<%= foundBlog.title %>" placeholder="title">
+  <input type="text" name="cblog[image]" value="<%= foundBlog.image %>" placeholder="image">
+  <input type="text" name="cblog[body]" value="<%= foundBlog.body %>" placeholder="body">
+  <button>Submit</button>
+</form>
+
+
+<% include partials/footer %>

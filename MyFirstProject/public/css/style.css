@@ -1,0 +1,18 @@
+body {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.thumbnail {
+/*   width: 60%;
+  margin: 20px auto; */
+}
+
+.img-thumbnail {
+  margin: 0;
+}
+
+.blog-thumbnail {
+  width: 60%;
+  margin: 20px auto;
+}
