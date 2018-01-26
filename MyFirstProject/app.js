@@ -63,22 +63,6 @@ var sblogSchema = new mongoose.Schema({
 var cBlog = mongoose.model("cBlog", cblogSchema)
 var sBlog = mongoose.model("sBlog", sblogSchema)
 
-
-// cBlog.create({
-//   title: "First",
-//   image: "https://www.gettyimages.com/gi-resources/images/Embed/new/embed2.jpg",
-//   body: "fqfeqofiqejwqw"
-// })
-
-
-// sBlog.create({
-//   title: "First" ,
-//   image: "https://www.gettyimages.com/gi-resources/images/Embed/new/embed2.jpg",
-//   body: "fqwjeqwjw;eqiojfow;"
-// })
-
-
-
 //Index Routes
 app.get('/', function(req,res) {
   res.render("home")
@@ -86,6 +70,10 @@ app.get('/', function(req,res) {
 
 app.get('/about', function(req,res) {
   res.render('about')
+})
+
+app.get('/projects', function(req,res) {
+  res.render("projects")
 })
 
 app.get('/compsci', function(req,res) {
@@ -133,7 +121,7 @@ app.get('/compsci/new', function(req,res) {
   res.render('cnew')
 })
 
-app.post('/compsci', function(req,res) {
+app.post('/compsci',isLoggedIn, function(req,res) {
   cBlog.create(req.body.cblog, function(err, blog) {
     if(err) {
       console.log(err)
@@ -148,7 +136,7 @@ app.get('/sportsci/new', function(req,res) {
   res.render('snew')
 })
 
-app.post('/sportsci', function(req,res) {
+app.post('/sportsci', isLoggedIn, function(req,res) {
   sBlog.create(req.body.sblog, function(err, blog) {
     if(err) {
       console.log(err)
@@ -159,26 +147,25 @@ app.post('/sportsci', function(req,res) {
   })
 })
 
-
 //SHOW Route
 app.get('/compsci/:id', function(req,res) {
-  cBlog.findById(req.params.id, function(err, afoundBlog) {
+  cBlog.findById(req.params.id, function(err, blog) {
     if(err) {
       res.redirect('/')
     } else {
-      res.render('cshow',{afoundBlog:afoundBlog})
-      console.log(afoundBlog)
+      res.render('cshow',{blog:blog})
+      console.log(blog)
     }
   })
 })
 
 app.get('/sportsci/:id', function(req,res) {
-  sBlog.findById(req.params.id, function(err, foundBlog) {
+  sBlog.findById(req.params.id, function(err, blog) {
     if(err) {
       res.redirect('/')
     } else {
-      res.render('sshow',{foundBlog:foundBlog})
-      console.log(foundBlog)
+      res.render('sshow',{blog:blog})
+      console.log(blog)
     }
   })
 }) 
@@ -194,7 +181,6 @@ app.get('/compsci/:id/edit', function(req,res) {
   })
 })
 
-
 app.get('/sportsci/:id/edit', function(req,res) {
   sBlog.findById(req.params.id, function(err, foundBlog) {
     if(err) {
@@ -205,7 +191,7 @@ app.get('/sportsci/:id/edit', function(req,res) {
   })
 })
 
-app.put('/compsci/:id', function(req,res) {
+app.put('/compsci/:id',isLoggedIn, function(req,res) {
   cBlog.findByIdAndUpdate(req.params.id, req.body.cblog, function(err, updatedBlog) {
     if(err) {
       console.log(err)
@@ -217,7 +203,7 @@ app.put('/compsci/:id', function(req,res) {
   })
 })
 
-app.put('/sportsci/:id', function(req,res) {
+app.put('/sportsci/:id',isLoggedIn, function(req,res) {
   sBlog.findByIdAndUpdate(req.params.id, req.body.sblog, function(err, updatedBlog) {
     if(err) {
       console.log(err)
@@ -231,7 +217,7 @@ app.put('/sportsci/:id', function(req,res) {
 
 
 //DELETE ROUTe
-app.delete('/compsci/:id', function(req,res) {
+app.delete('/compsci/:id',isLoggedIn, function(req,res) {
   cBlog.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       console.log(err)
@@ -242,7 +228,7 @@ app.delete('/compsci/:id', function(req,res) {
   })
 })
 
-app.delete('/sportsci/:id', function(req,res) {
+app.delete('/sportsci/:id',isLoggedIn, function(req,res) {
   sBlog.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       console.log(err)

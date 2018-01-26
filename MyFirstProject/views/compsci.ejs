@@ -1,5 +1,5 @@
 <% include partials/header %>
-<h1>Computer Science</h1>
+<h1><strong>Computer Science Blog</strong></h1>
 <div class="container">
 <a href="/compsci/new">New Post</a>
 </div>
@@ -9,12 +9,12 @@
     <div class="row text-center">
       <div class="col-sm-4"></div>
         <div class="thumbnail blog-thumbnail">
-      <h2><%= blog.title %></h2>
-      <img class="img-thumbnail" src="<%= blog.image %>" alt="">
-      <p><strong>Date:</strong> <%= blog.created.toDateString() %></p>
-      <p><%= blog.body %>...</p>
-       <a href="/sportsci/<%= blog._id %>">Read More</a>
-          </div>
+          <h2><%= blog.title %></h2>
+          <img class="img-thumbnail" src="<%= blog.image %>" alt="">
+          <p><strong>Date:</strong> <%= blog.created.toDateString() %></p>
+          <p><%= blog.body.substring(0,100) %>...</p>
+           <a href="/compsci/<%= blog._id %>">Read More</a>
+        </div>
       </div>
      </div>
   </div>
